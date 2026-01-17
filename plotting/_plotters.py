@@ -30,12 +30,13 @@ def _approximated(ax: Axes, plot: Plot) -> None:
 
     expected_plot = get_graph_data(plot)
 
-    print(f"Expected plot: {expected_plot}")
-
     _scatter(ax, plot)
     if expected_plot is not None:
         expected_plot["label"] = f"{plot['label']} {expected_plot['label']}"
         _line(ax, expected_plot)
+
+    # print(f">> Actual plot: {str(plot)[:100]} ...")
+    # print(f">> Expected plot: {str(expected_plot)[:100]} ... \n")
 
 
 def _do_nothing(ax: Axes, plot: Plot) -> None:
@@ -95,7 +96,7 @@ def get_graph_data(inPlot: Plot) -> Plot | None:
     return expected_data
 
 
-def get_plotter(plot: Plot) -> Callable:
+def get_plotter(plot: Plot) -> Callable[[Axes, Plot], None]:
     """
     Return the plotting function corresponding to the graph type.
     """

@@ -3,10 +3,10 @@ from typing import cast
 
 from numpy import array
 
-from pyplot import Graph, PlotType, graph
+from plotting import Graph, PlotType, graph
 
 CWD: Path = Path(__file__).parent.resolve()
-GPATH: Path = CWD / "graphs"
+GPATH: Path = CWD / "examples"
 GPATH.mkdir(parents=True, exist_ok=True)
 
 graphobj = cast(
@@ -19,16 +19,40 @@ graphobj = cast(
         "plots": [
             {
                 "label": "Data 1",
-                "x": array([1, 2, 3, 4, 5], dtype=float),
-                "y": array([1, 2, 3, 4, 5], dtype=float),
+                "x": array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], dtype=float),
+                "y": array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], dtype=float),
                 "type": PlotType.LINEAR,
                 "size": 10,
             },
             {
                 "label": "Data 2",
-                "x": array([2, 4, 6, 8, 10], dtype=float),
-                "y": array([1, 2, 3, 4, 5], dtype=float),
-                "type": PlotType.LINEAR,
+                "x": array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], dtype=float),
+                "y": array(
+                    [
+                        1,
+                        1.5,
+                        1.75,
+                        1.875,
+                        1.9375,
+                        1.96875,
+                        1.984375,
+                        1.9921875,
+                        1.99609375,
+                        1.998046875,
+                    ],
+                    dtype=float,
+                ),
+                "type": PlotType.LOGARITHMIC,
+                "size": 10,
+            },
+            {
+                "label": "Data 3",
+                "x": array([1, 2, 3, 4, 5, 6, 7, 8, 9], dtype=float),
+                "y": array(
+                    [0.03125, 0.0625, 0.125, 0.25, 0.5, 1, 2, 4, 8],
+                    dtype=float,
+                ),
+                "type": PlotType.EXPONENTIAL,
                 "size": 10,
             },
         ],

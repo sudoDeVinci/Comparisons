@@ -7,7 +7,8 @@ from typing import cast
 import matplotlib.pyplot as plt
 import toml
 
-from plotting import Graph, Plot, PlotType, get_plotter
+from ._plotters import get_plotter
+from ._structs import Graph, Plot, PlotType
 
 
 def _load_json(file_path: Path) -> dict[str, object] | None:
@@ -107,7 +108,7 @@ def _json_to_Graph(graph: dict) -> Graph:
     return outGraph
 
 
-def graph(graph: Graph, graph_path: Path = Path("src/graphs/test.png")) -> None:
+def graph(graph: Graph, graph_path: Path) -> None:
     """
     Renders and saves a graph based on the provided Graph object and path.
 

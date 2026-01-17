@@ -1,4 +1,4 @@
-from numpy import array, float64, log2
+from numpy import array, float64, log2, polyfit
 from numpy.typing import NDArray
 
 from ._structs import Plot, PlotType

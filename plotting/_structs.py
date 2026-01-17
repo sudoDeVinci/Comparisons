@@ -1,7 +1,7 @@
 import functools
 from abc import ABC, abstractmethod
 from enum import Enum
-from typing import Any, Self, TypedDict, override
+from typing import Self, TypedDict, override
 
 from numpy import float64
 from numpy.typing import NDArray
@@ -41,7 +41,7 @@ class PlotType(Enum):
     LOGARITHMIC = "logarithmic"
     SCATTER = "scatter"
     LINE = "line"
-    NONE = "None"
+    NONE = "none"
 
     @classmethod
     @functools.lru_cache(maxsize=None)
@@ -52,19 +52,23 @@ class PlotType(Enum):
 
     @classmethod
     @functools.lru_cache(maxsize=None)
-    def match(cls, graph: str):
+    def match(cls, ptype: str) -> "PlotType":
         """
         Match input string to PlotType.
         """
-        graph = graph.lower()
-        for _, PlotType in cls.__members__.items():
-            if graph == PlotType.value:
-                return PlotType
-        return cls.NONE
-
-    @classmethod
-    def _missing_(cls, value: Any):
-        return cls.NONE
+        match ptype.lower().strip():
+            case "linear":
+                return cls.LINEAR
+            case "exponential":
+                return cls.EXPONENTIAL
+            case "logarithmic":
+                return cls.LOGARITHMIC
+            case "scatter":
+                return cls.SCATTER
+            case "line":
+                return cls.LINE
+            case _:
+                return cls.NONE
 
 
 class Equation(ABC):
