@@ -1,4 +1,4 @@
-# Comparison Plotting Library
+# Comparison Plotting Utility
 
 ## Description  
 A lightweight Python library for creating comparison plots from numeric data.  
